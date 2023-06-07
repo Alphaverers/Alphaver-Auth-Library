@@ -1,2 +1,2 @@
 # Alphaver-Auth-Library
-An interface library for the Alphaver-Auth-API
+## IN VERY EARLY STAGES!
