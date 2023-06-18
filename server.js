@@ -153,9 +153,9 @@ async function reviver(code, MID) {
             console.log("Current value at " + code + " : " + result)
             if (result !== checkvalue) {
                 console.log("Token is dead")
-                //store(code, checkvalue)
+                store(code, checkvalue)
                 fs.writeFileSync('./tmp/token.json', JSON.stringify(code));
-                return "ERROR"
+                return "DONE"
             } else {
                 console.log("Token is already alive")
                 return "DONE"
@@ -172,6 +172,7 @@ async function reviver(code, MID) {
 async function newtoken(MID) {
     if (MID == MasterID) {
         var token = maketoken()
+        writeTokens(token)
         store(token, checkvalue)
         return token
     } else {
