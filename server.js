@@ -51,7 +51,7 @@ app.get(root, function (req, res) {
 })
 
 app.post(revive, jsonParser, function (req, res) {
-    logrouter(revive, "POST")
+    logrouter(revive, "POST", req)
     console.log("raw JSON: " + JSON.stringify(req.body))
     console.log("code: " + req.body.code)
     console.log("MID: " + req.body.MID)
@@ -70,7 +70,7 @@ app.post(revive, jsonParser, function (req, res) {
 })
 
 app.get(token, jsonParser, function (req, res) {
-    logrouter(token, "GET")
+    logrouter(token, "GET", req)
     console.log("raw JSON: " + JSON.stringify(req.body))
     var value = newtoken();
     if (value == "ERROR") {
@@ -89,7 +89,7 @@ app.get(token, jsonParser, function (req, res) {
 })
 
 app.post(check, jsonParser, function (req, res) {
-    logrouter(check, "POST");
+    logrouter(check, "POST", req);
     console.log("raw JSON: " + JSON.stringify(req.body))
     var check = get(req.body.code);
     if (check != null) {
@@ -106,7 +106,7 @@ app.post(check, jsonParser, function (req, res) {
 });
 
 app.post(checkuser, jsonParser, function (req, res) {
-    logrouter(checkuser, "POST")
+    logrouter(checkuser, "POST", req)
     console.log("raw JSON: " + JSON.stringify(req.body))
     var check = checkuser(req.body.user, req.body.MID)
     if (check == "DONE") {
@@ -118,7 +118,7 @@ app.post(checkuser, jsonParser, function (req, res) {
 })
 
 app.post(newuser, jsonParser, function (req, res) {
-    logrouter(checkuser, "POST")
+    logrouter(checkuser, "POST", req)
     console.log("raw JSON: " + JSON.stringify(req.body))
     store(req.body.username, checkvalue)
     res.status(200)
@@ -128,7 +128,7 @@ app.post(newuser, jsonParser, function (req, res) {
 })
 
 app.delete(deluser, jsonParser, function (req, res) {
-    logrouter(deluser, "DELETE")
+    logrouter(deluser, "DELETE", req)
     console.log("raw JSON: " + JSON.stringify(req.body))
     del(req.body.username)
     res.status(200)
